@@ -11,7 +11,9 @@
 *.pdf
 
 # other obviously ignorable file-types:
-#...
+*.png
+*.jpg
+*.jpeg
 
 # ignore executables (essentially all stuff compiler created):
 /Exercise1/HelloWorld
