@@ -9,7 +9,8 @@ Desc:       Just "printf" the string "Hello, World!!!" (with a linebreak)
 
 int main() {
 
-    printf("Hello, World!!!\n"); // sentences end with semicolon; functions end with curlies
+    printf("Hello, World!!! "); // sentences end with semicolon; functions end with curlies
+    printf("is a common phrase, \nwhen starting to learn programming. \n");
     
     return 0; // non void functions return always something!!! 0 == nothing special
     
