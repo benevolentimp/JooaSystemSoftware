@@ -1,7 +1,8 @@
 /*
 Title:		Exercise2 - Basics for C
 Author:		Jooa Jaakkola
-Desc:		
+Desc:		Exercise 2, which contains coding habit practise
+            for eg. conditions, loops and data-types.
 */
 
 #include <stdio.h>
@@ -20,6 +21,11 @@ double mean(int fI, int sI);
 int randomGenerator(void);
 const char* EvenOrOdd(int RNG);
 const char* IsItDivisible(int RNG);
+int DoesArrayHave(int integers, int RNG);
+
+int loopArray(int array);
+
+int integers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 int main(void) {	
@@ -77,7 +83,8 @@ int main(void) {
 	printf("Generated number is %d, ", randomNumber);
 	printf("and it's considered %s.\n", EvenOrOdd(randomNumber));
 	printf("The number is also %s.\n\n", IsItDivisible(randomNumber));
-	
+    
+    printf("%d\n", loopArray(integers));
 	
 	return 0;
 }
@@ -130,8 +137,7 @@ double mean(int fI, int sI) {
 	return resultMean;
 }
 
-
-/* Generates a random number between 0 and 100. */
+////////////////////////////
 int randomGenerator(void) {
 	
 	int number;
@@ -143,7 +149,7 @@ int randomGenerator(void) {
 	return number;
 }
 
-/*  */
+/////////////////////////////////
 const char* EvenOrOdd(int RNG) {
 	
 	if (RNG == 0) {
@@ -157,7 +163,7 @@ const char* EvenOrOdd(int RNG) {
 	}
 }
 
-/*  */
+/////////////////////////////////////
 const char* IsItDivisible(int RNG) {
 	
 	if ((RNG%4 && RNG%7) == 0) {
@@ -167,8 +173,7 @@ const char* IsItDivisible(int RNG) {
 	}
 }
 
-/* Special function for if-else -block comparing given inputs,
-   printing out a message for each clause. (4b) */
+/////////////////////////////////////////
 const char* comparison(int fI, int sI) {
 	
 	if (fI > sI) {
@@ -184,3 +189,42 @@ const char* comparison(int fI, int sI) {
 		return "Both of your inputs are identical, yay!!!\n\n";
 	}
 }
+
+///////////////////////////
+int loopArray(int array) {
+    
+    int i, j;    
+    
+    for (i = 0; i < 10; i++) {
+        
+        if (i == 9) {
+            printf("%d\n", integers[i]);
+        } else {
+            printf("%d", integers[i]);
+        }
+    }
+    
+    for (j = i; j > 0; j--) {
+        
+        if (i == 9) {
+            printf("%d\n", integers[j-1]);
+        } else {
+            printf("%d", integers[j-1]);
+        }
+    }
+    
+    return 0;
+}
+
+
+int DoesArrayHave(int integers, int RNG) {
+    
+    int i;    
+
+    
+}
+
+
+/* 
+eof 
+*/
