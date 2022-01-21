@@ -19,6 +19,7 @@ double mean(int fI, int sI);
 
 int randomGenerator(void);
 const char* EvenOrOdd(int RNG);
+const char* IsItDivisible(int RNG);
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 int main(void) {	
@@ -74,7 +75,8 @@ int main(void) {
 	
 	randomNumber = randomGenerator();
 	printf("Generated number is %d, ", randomNumber);
-	printf("and it's considered %s\n", EvenOrOdd(randomNumber));
+	printf("and it's considered %s.\n", EvenOrOdd(randomNumber));
+	printf("The number is also %s.\n\n", IsItDivisible(randomNumber));
 	
 	
 	return 0;
@@ -128,6 +130,7 @@ double mean(int fI, int sI) {
 	return resultMean;
 }
 
+
 /* Generates a random number between 0 and 100. */
 int randomGenerator(void) {
 	
@@ -140,7 +143,7 @@ int randomGenerator(void) {
 	return number;
 }
 
-/* Does a few operations on the generated random number. */
+/*  */
 const char* EvenOrOdd(int RNG) {
 	
 	if (RNG == 0) {
@@ -151,6 +154,16 @@ const char* EvenOrOdd(int RNG) {
 		} else if (RNG % 2 != 0) {
 			return "odd";
 		}
+	}
+}
+
+/*  */
+const char* IsItDivisible(int RNG) {
+	
+	if ((RNG%4 && RNG%7) == 0) {
+		return "divisible by both 4 and 7, lucky find!!!"; // wanted to add (nested?) clause for 4 but not 7...
+	} else {
+		return "not divisible by either 4 or 7";
 	}
 }
 
