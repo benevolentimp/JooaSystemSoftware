@@ -7,12 +7,15 @@ Desc:
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+
 const char* comparison(int fI, int sI);
 int sum(int fI, int sI);
 int diff(int fI, int sI);
 int pro(int fI, int sI);
 double divi(int fI, int sI);
 double mean(int fI, int sI);
+int randomGenerator(void);
 
 
 int main(void) {	
@@ -61,6 +64,10 @@ int main(void) {
 	
 	pot = pow(firstInteger, secondInteger);
 	printf("Your first number to the power of the second one is %d\n", pot);
+	
+	
+	printf("Generated number is %d\n", randomGenerator());
+	
 	
 	return 0;
 }
@@ -112,6 +119,17 @@ double mean(int fI, int sI) {
 	return resultMean;
 }
 
+/* Generates a random number between 0 and 100. */
+int randomGenerator(void) {
+	
+	int number;
+	srand(time(0)); //sets the seed for randomness
+	
+	number = rand() % 101; //((max+1 - min) - min)
+	
+	
+	return number;
+}
 
 /* Special function for if-else -block comparing given inputs,
    printing out a message for each clause. (4b) */
