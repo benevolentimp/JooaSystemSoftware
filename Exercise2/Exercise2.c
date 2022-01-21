@@ -10,19 +10,26 @@ Desc:
 #include <time.h>
 
 const char* comparison(int fI, int sI);
+
 int sum(int fI, int sI);
 int diff(int fI, int sI);
 int pro(int fI, int sI);
 double divi(int fI, int sI);
 double mean(int fI, int sI);
+
 int randomGenerator(void);
-
-
+const char* EvenOrOdd(int RNG);
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 int main(void) {	
 
 	int firstInteger, secondInteger;
+	
 	int summa, erotus, tulo, pot;
 	double jako, kA;
+	
+	int randomNumber;
+	
 	
 	printf("Give an integer: ");
 	scanf("%d", &firstInteger); //goes right after the printf!!!
@@ -63,15 +70,17 @@ int main(void) {
 	printf("The average between your two integers is %.2f\n", kA);
 	
 	pot = pow(firstInteger, secondInteger);
-	printf("Your first number to the power of the second one is %d\n", pot);
+	printf("Your first number to the power of the second one is %d\n\n", pot);
 	
-	
-	printf("Generated number is %d\n", randomGenerator());
+	randomNumber = randomGenerator();
+	printf("Generated number is %d, ", randomNumber);
+	printf("and it's considered %s\n", EvenOrOdd(randomNumber));
 	
 	
 	return 0;
 }
-
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 int sum(int fI, int sI) {
 	
 	int resultSum;
@@ -131,6 +140,20 @@ int randomGenerator(void) {
 	return number;
 }
 
+/* Does a few operations on the generated random number. */
+const char* EvenOrOdd(int RNG) {
+	
+	if (RNG == 0) {
+		return "0 is considered neither odd nor even.";
+	} else {
+		if (RNG % 2 == 0) {
+			return "even";
+		} else if (RNG % 2 != 0) {
+			return "odd";
+		}
+	}
+}
+
 /* Special function for if-else -block comparing given inputs,
    printing out a message for each clause. (4b) */
 const char* comparison(int fI, int sI) {
@@ -139,7 +162,7 @@ const char* comparison(int fI, int sI) {
 	
 		return ("Your first input is bigger than the second one.\n\n");
 		
-	} else if (sI > fI){
+	} else if (sI > fI) {
 	
 		return ("Your second input is bigger than the first one.\n\n");
 		
