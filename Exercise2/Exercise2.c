@@ -1,33 +1,35 @@
-/*
+/*////////////////////////////////////////////////////
 Title:		Exercise2 - Basics for C
 Author:		Jooa Jaakkola
 Desc:		Exercise 2, which contains coding habit practise
             for eg. conditions, loops and data-types.
-*/
+*////////////////////////////////////////////////////
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> // "standard input-output"
+#include <stdlib.h> // "standard library"
 #include <math.h>
 #include <time.h>
 
-const char* comparison(int fI, int sI);
+const char* comparison(int fI, int sI); // Initialises a function that returns a string.
 
+/*
+Initialize functions for arithmetic operations:
+*/
 int sum(int fI, int sI);
 int diff(int fI, int sI);
 int pro(int fI, int sI);
 double divi(int fI, int sI);
 double mean(int fI, int sI);
 
+/*
+Initialize functions regarding randomGenerator:
+*/
 int randomGenerator(void);
 const char* EvenOrOdd(int RNG);
 const char* IsItDivisible(int RNG);
 int DoesArrayHave(int integers, int RNG);
 
-int loopArray(int array);
 
-int integers[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-/////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 int main(void) {	
 
 	int firstInteger, secondInteger;
@@ -36,31 +38,30 @@ int main(void) {
 	double jako, kA;
 	
 	int randomNumber;
+
+    int integers[10] = {1,2,3,4,5,6,7,8,9};
 	
 	
 	printf("Give an integer: ");
-	scanf("%d", &firstInteger); //goes right after the printf!!!
+	scanf("%d", &firstInteger); // NOTE: input prompt right after previous printf()!
 	
 	printf("Give another integer: ");
 	scanf("%d", &secondInteger);
 	
 	if (firstInteger + secondInteger == 15) {
-	
 		printf("Your integers make %d%d... Nice ;)\n\n", firstInteger, secondInteger);
-	
 	} else if (firstInteger == secondInteger) {
-	
-		printf("Your integers are double %ds\n\n", firstInteger, secondInteger);
-		
+		printf("Your integers are double %ds\n\n", firstInteger); // You only need 1 argument for this formatting.
 	} else {
-	
 		printf("Your integers are %d and %d\n\n", firstInteger, secondInteger);
 	}
 
-
-	printf("%s", comparison(firstInteger, secondInteger)); //function call and giving it the parameter values
+	printf("%s", comparison(firstInteger, secondInteger)); // Function call and giving it parameters.
 	
-	
+    
+	/*
+    Function calls and outputs for arithmetic operations:
+    */
 	summa = sum(firstInteger, secondInteger);
 	printf("The sum of your integers is %d\n", summa);
 	
@@ -79,101 +80,37 @@ int main(void) {
 	pot = pow(firstInteger, secondInteger);
 	printf("Your first number to the power of the second one is %d\n\n", pot);
 	
+    
+    /*
+    Function calls and outputs for everything regarding randomNumber:
+    */
 	randomNumber = randomGenerator();
 	printf("Generated number is %d, ", randomNumber);
 	printf("and it's considered %s.\n", EvenOrOdd(randomNumber));
 	printf("The number is also %s.\n\n", IsItDivisible(randomNumber));
     
-    printf("%d\n", loopArray(integers));
+
+    /*
+    Fiddling with our array:
+    */
+    for (int i = 0; i < 10; i++) {
+        if (i != 10) {
+            printf("%d\n", integers[i]);
+        }
+    }
+    
+    for (int j = 10; j == 0; j--) {
+        printf("%d\n", integers[j]);
+    }
 	
-	return 0;
-}
-////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-int sum(int fI, int sI) {
 	
-	int resultSum;
-	
-	resultSum = fI + sI;
-	
-	return resultSum;
+	return 0; // The main function doesn't return anything, yet...
 }
 
-int diff(int fI, int sI) {
-	int resultDiff;
-	
-	if (fI > sI) {
-		resultDiff = fI - sI;
-		return resultDiff;
-	} else if (sI > fI) {
-		resultDiff = sI - fI;
-		return resultDiff;
-	} else if (fI == sI) {
-		return 0;
-	}
-}
 
-int pro(int fI, int sI) {
-	int resultPro;
-	
-	resultPro = fI * sI;
-	return resultPro;
-}
-
-double divi(int fI, int sI) {
-	double resultDivi;
-	if (sI == 0) {
-		fprintf(stderr, "ZeroDivisionError, exiting execution...\n"); // handling zero division with a library
-		exit(-1);
-	} else {
-		resultDivi = (double) fI / (double) sI; // type-casting "passes" into correct type
-		return resultDivi;
-	}
-}
-
-double mean(int fI, int sI) {
-	double resultMean;
-	resultMean = ((double) fI + (double) sI) / 2;
-	return resultMean;
-}
-
-////////////////////////////
-int randomGenerator(void) {
-	
-	int number;
-	srand(time(0)); //sets the seed for randomness
-	
-	number = rand() % 101; //((max+1 - min) - min)
-	
-	
-	return number;
-}
-
-/////////////////////////////////
-const char* EvenOrOdd(int RNG) {
-	
-	if (RNG == 0) {
-		return "0 is considered neither odd nor even.";
-	} else {
-		if (RNG % 2 == 0) {
-			return "even";
-		} else if (RNG % 2 != 0) {
-			return "odd";
-		}
-	}
-}
-
-/////////////////////////////////////
-const char* IsItDivisible(int RNG) {
-	
-	if ((RNG%4 && RNG%7) == 0) {
-		return "divisible by both 4 and 7, lucky find!!!"; // wanted to add (nested?) clause for 4 but not 7...
-	} else {
-		return "not divisible by either 4 or 7";
-	}
-}
-
-/////////////////////////////////////////
+/*
+Comparison of prompted integers returning a string:
+*/
 const char* comparison(int fI, int sI) {
 	
 	if (fI > sI) {
@@ -188,40 +125,127 @@ const char* comparison(int fI, int sI) {
 	
 		return "Both of your inputs are identical, yay!!!\n\n";
 	}
+	
+	return 0;
 }
 
-///////////////////////////
-int loopArray(int array) {
+
+/*
+A bunch of arithmetic operations:
+*/
+int sum(int fI, int sI) { // SUM
+	
+	int resultSum;
+	
+	resultSum = fI + sI;
+	
+	return resultSum;
+}
+
+int diff(int fI, int sI) { // DIFFERENCE
     
-    int i, j;    
+	int resultDiff;
+	
+	if (fI > sI) { // Using a condition in order to not get negatives (Bigger - Smaller).
+		resultDiff = fI - sI;
+		return resultDiff;
+	} else if (sI > fI) {
+		resultDiff = sI - fI;
+		return resultDiff;
+	} else if (fI == sI) {
+		return 0;
+	}
+	
+	return 0;
+}
+
+int pro(int fI, int sI) { // PRODUCT
+
+	int resultPro;
+	
+	resultPro = fI * sI;
     
-    for (i = 0; i < 10; i++) {
-        
-        if (i == 9) {
-            printf("%d\n", integers[i]);
-        } else {
-            printf("%d", integers[i]);
-        }
-    }
+	return resultPro;
+}
+
+double divi(int fI, int sI) { // DIVIDE
     
-    for (j = i; j > 0; j--) {
-        
-        if (i == 9) {
-            printf("%d\n", integers[j-1]);
-        } else {
-            printf("%d", integers[j-1]);
-        }
+	double resultDivi;
+    
+	if (sI == 0) {
+		fprintf(stderr, "ZeroDivisionError, exiting execution...\n"); // Handling zero division with a library.
+		exit(-1);
+	} else {
+		resultDivi = (double) fI / (double) sI; // Type-casting "passes" into correct type.
+		return resultDivi;
+	}
+}
+
+double mean(int fI, int sI) { // MEAN
+    
+	double resultMean;
+    
+	resultMean = ((double) fI + (double) sI) / 2;
+    
+	return resultMean;
+}
+
+
+/*
+randomGenerator and using it:
+*/
+int randomGenerator(void) {
+	
+	int number;
+    
+	srand(time(0)); // Setting the seed for random (rand()).
+	
+	number = rand() % 101; // Using formula: ((max + 1 - min) - min)
+	
+	return number;
+}
+
+const char* EvenOrOdd(int RNG) {
+	
+	if (RNG == 0) {
+		return "0 is considered neither odd nor even.";
+	} else {
+		if (RNG % 2 == 0) {
+			return "even"; // Function ends early if condition met. Is it ok?
+		} else if (RNG % 2 != 0) {
+			return "odd";
+		}
+	}
+	
+	return 0;
+}
+
+const char* IsItDivisible(int RNG) {
+	
+	if ((RNG%4 && RNG%7) == 0) { // AND-operator is strict and thus you only need this and else.
+		return "divisible by both 4 and 7, lucky find!!!";
+	} else {
+		return "not divisible by either 4 or 7";
+	}
+}
+
+
+/*
+Function(s) for looping our array and otherwise inspecting it:
+*/
+int DoesArrayHave(int integers, int RNG) {
+    
+    int i;
+    
+    for (i = 0; i <= 10; i++) {
+    	
+    	if (integers[i] == RNG) {
+    		
+    		return 1;
+    	} 
     }
     
     return 0;
-}
-
-
-int DoesArrayHave(int integers, int RNG) {
-    
-    int i;    
-
-    
 }
 
 
