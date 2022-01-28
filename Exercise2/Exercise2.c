@@ -32,16 +32,23 @@ const char* IsItDivisible(int RNG);
 
 int main() {	
 
-	int firstInteger, secondInteger;
+	int firstInteger = 0;
+    int secondInteger = 0;
 	
-	int summa, erotus, tulo, pot;
-	double jako, kA;
+    // Should be in English:
+	int summ = 0;
+    int diffe = 0; 
+    int prod = 0; 
+    int power = 0;
+	double divis = 0;
+    double meann = 0;
+    //
 	
-	int randomNumber;
+	int randomNumber = 0;
 
     int integers[10] = {1,21,66,0,69,22,11,13,65};
 
-    int inArray;
+    int inArray = 0; // Used as a boolean.
 	
 	
 	printf("Give an integer: ");
@@ -64,23 +71,23 @@ int main() {
 	/*
     Function calls and outputs for arithmetic operations:
     */
-	summa = sum(firstInteger, secondInteger);
-	printf("The sum of your integers is %d\n", summa);
+	summ = sum(firstInteger, secondInteger);
+	printf("The sum of your integers is %d\n", summ);
 	
-	erotus = diff(firstInteger, secondInteger);
-	printf("The difference between your integers is %d\n", erotus);
+	diffe = diff(firstInteger, secondInteger);
+	printf("The difference between your integers is %d\n", diffe);
 	
-	tulo = pro(firstInteger, secondInteger);
-	printf("The product of your integers is %d\n", tulo);
+	prod = pro(firstInteger, secondInteger);
+	printf("The product of your integers is %d\n", prod);
 	
-	jako = divi(firstInteger, secondInteger);
-	printf("The division of your integers is %.2f\n", jako);
+	divis = divi(firstInteger, secondInteger);
+	printf("The division of your integers is %.2f\n", divis);
 	
-	kA = mean(firstInteger, secondInteger);
-	printf("The average between your two integers is %.2f\n", kA);
+	meann = mean(firstInteger, secondInteger);
+	printf("The average between your two integers is %.2f\n", meann);
 	
-	pot = pow(firstInteger, secondInteger);
-	printf("Your first number to the power of the second one is %d\n\n", pot);
+	power = pow(firstInteger, secondInteger);
+	printf("Your first number to the power of the second one is %d\n\n", power);
 	
     
     /*
@@ -162,7 +169,7 @@ const char* comparison(int fI, int sI) {
 
 
 /*
-A bunch of arithmetic operations:
+A bunch of arithmetic operations (fI = firstInteger, sI = secondInteger):
 */
 int sum(int fI, int sI) { // SUM
 	
@@ -204,8 +211,8 @@ double divi(int fI, int sI) { // DIVIDE
 	double resultDivi;
     
 	if (sI == 0) {
-		fprintf(stderr, "ZeroDivisionError, exiting execution...\n"); // Handling zero division with a library.
-		exit(-1);
+		fprintf(stderr, "ZeroDivisionError, exiting execution...\n\n"); // Handling zero division with a library.
+		return 0;
 	} else {
 		resultDivi = (double) fI / (double) sI; // Type-casting "passes" into correct type.
 		return resultDivi;
@@ -225,7 +232,7 @@ double mean(int fI, int sI) { // MEAN
 /*
 randomGenerator and using it:
 */
-int randomGenerator(void) {
+int randomGenerator() {
 	
 	int number;
     
