@@ -27,10 +27,10 @@ Initialize functions regarding randomGenerator:
 int randomGenerator(void);
 const char* EvenOrOdd(int RNG);
 const char* IsItDivisible(int RNG);
-int DoesArrayHave(int integers, int RNG);
+// int loopArray(int array, int RNG);
 
 
-int main(void) {	
+int main() {	
 
 	int firstInteger, secondInteger;
 	
@@ -39,7 +39,9 @@ int main(void) {
 	
 	int randomNumber;
 
-    int integers[10] = {1,2,3,4,5,6,7,8,9};
+    int integers[10] = {1,21,66,0,69,22,11,13,65};
+
+    int inArray;
 	
 	
 	printf("Give an integer: ");
@@ -93,17 +95,46 @@ int main(void) {
     /*
     Fiddling with our array:
     */
+    
+    // From integers[0] to integers[9]:
     for (int i = 0; i < 10; i++) {
-        if (i != 10) {
-            printf("%d\n", integers[i]);
+        if (i == 9) { // if-conditional to make loop print numbers neatly.
+            printf("%d\n", integers[i]);        
+        } else {
+            printf("%d, ", integers[i]);
         }
     }
     
-    for (int j = 10; j == 0; j--) {
-        printf("%d\n", integers[j]);
+    // From integers[9] to integers[0]:
+    for (int j = 9; j > -1; j--) {
+        if (j == 0) {
+            printf("%d\n", integers[j]);        
+        } else {
+            printf("%d, ", integers[j]);
+        }
     }
-	
-	
+    
+	// Looping array while inspecting it:
+    for (int k = 0; k < 10; k++) {
+        if (integers[k] == randomNumber) {
+            inArray = 1;
+        } else {
+            inArray = 0;
+        }
+    }
+    
+    switch (inArray) {
+    
+    case 1:
+        printf("Randomly generated number %d is in array[10].\n", randomNumber);
+        break;
+    
+    case 0:
+        printf("Randomly generated number %d IS NOT in array[10].\n", randomNumber);
+        break;
+    }
+
+
 	return 0; // The main function doesn't return anything, yet...
 }
 
@@ -227,25 +258,6 @@ const char* IsItDivisible(int RNG) {
 	} else {
 		return "not divisible by either 4 or 7";
 	}
-}
-
-
-/*
-Function(s) for looping our array and otherwise inspecting it:
-*/
-int DoesArrayHave(int integers, int RNG) {
-    
-    int i;
-    
-    for (i = 0; i <= 10; i++) {
-    	
-    	if (integers[i] == RNG) {
-    		
-    		return 1;
-    	} 
-    }
-    
-    return 0;
 }
 
 
