@@ -15,11 +15,14 @@
 *.jpg
 *.jpeg
 
+# ignore everything in practise-demos:
+/Practise/*
+
 # ignore executables (essentially all stuff compiler created):
 /Exercise1/HelloWorld
 /Exercise2/Exercise2
 /Exercise3/Exercise3
-#/Exercise4/Exercise4
+/Exercise4/Exercise4
 #/Exercise5/Exercise5
 #/Exercise6/Exercise6
 #/Exercise7/Exercise7
