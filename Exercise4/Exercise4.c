@@ -13,6 +13,7 @@ int countNegatives();
 int countSum();
 int countSumPlus();
 int randomNumberGenerator(int first, int second);
+int gradeCalc(int points);
 
 int main() {
 
@@ -53,12 +54,28 @@ int main() {
 	printf("\n################################\n\n");
 	
 	/////////////////////////////////////////////////////////////////
-	/* Exercise_4 4a – Loop to generate 2 parameters from console. */
+	/* Exercise_4 4a */
 	
 	randomNumber = randomNumberGenerator(0, 120); // note: CHANGE MANUALLY!
 	
 	printf("Generated 'randomNumber' is: %d\n", randomNumber);
 	printf("\n################################\n\n");
+	
+	/////////////////////////////////////////////////////////////////
+	/* Exercise_4 4b */
+	
+	int grade = gradeCalc(randomNumber);
+	
+	if (grade < 0) {
+		
+		printf("Oops, something went wrong...\nInput out of range!\n");
+		printf("\n################################\n\n");
+		
+	} else if (grade >= 0 && grade <= 5) {
+		
+		printf("Corresponding grade (0 – 5) for %d (0 – 120) is: %d\n", randomNumber, grade);
+		printf("\n################################\n\n");
+	}
     
     
     return 0;
@@ -76,7 +93,8 @@ int countNegatives() {
 	
 	while (local) {
 		
-		printf("Give an integer for counting negatives (press 0 to exit): "); scanf("%d", &inputs);
+		printf("Give an integer for counting negatives (press 0 to exit): "); 
+		scanf("%d", &inputs);
 		
 		if (inputs == 0) {
 			
@@ -103,7 +121,8 @@ int countSum() {
 	
 	while (local) {
 		
-		printf("Give an integer for summing them (press 0 to exit): "); scanf("%d", &inputs);
+		printf("Give an integer for summing them (press 0 to exit): "); 
+		scanf("%d", &inputs);
 		
 		if (inputs == 0) {
 		
@@ -135,7 +154,8 @@ int countSumPlus() {
 	
 	while (local) {
 		
-		printf("Give an integer for summing positives divisible by three (press 0 to exit): "); scanf("%d", &inputs);
+		printf("Give an integer for summing positives divisible by three (press 0 to exit): "); 
+		scanf("%d", &inputs);
 		
 		if (inputs == 0) {
 		
@@ -173,6 +193,31 @@ int randomNumberGenerator(int first, int second) {
 	}
 		
 	return randomNumber;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int gradeCalc(int points) {
+
+	int grade = 0;
+	
+	if (points < 60) {
+		grade = 0;
+	} else if ((points >= 60) && (points < 72)) {
+		grade = 1;
+	} else if ((points >= 72) && (points < 84)) {
+		grade = 2;
+	} else if ((points >= 84) && (points < 96)) {
+		grade = 3;
+	} else if ((points >= 96) && (points < 108)) {
+		grade = 4;
+	} else if (points >= 108) {
+		grade = 5;
+	} else {
+		grade = points;
+	}
+	
+	return grade;
 }
 
 /*
