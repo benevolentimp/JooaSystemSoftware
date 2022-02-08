@@ -8,20 +8,32 @@ Desc:       Programming basics - Learning to divide code into "function-blocks"
 #include <stdlib.h>
 #include <time.h>
 
+
 int askingNumbers();
 int countNegatives();
 int countSum();
 int countSumPlus();
+
 int randomNumberGenerator(int first, int second);
 int gradeCalc(int points);
 
-int main() {
+int primeQuery();
+int isPrime(int input);
 
-	int randomNumber = 0;
+
+int main() {
 	
-	/////////////////////////////////////////////////////////////////
-	/* Exercise_4 3a – Conditions for accurate grammar in output. */
-	int countedNegatives = countNegatives();
+	int countedNegatives = 0;
+	int countedSum = 0;
+	int countedSumPlus = 0;
+	
+	int randomNumber = 0;
+	int grade = 0;
+	
+	int input = 0;
+	
+	
+	countedNegatives = countNegatives();
 	
 	if (countedNegatives == 1) {
 	
@@ -39,32 +51,25 @@ int main() {
 		printf("\n################################\n\n");
 	}
 	
-	////////////////////
-	/* Exercise_4 3b */
-	int countedSum = countSum();
+
+	countedSum = countSum();
 	
 	printf("The sum of your integers is: %d\n", countedSum);
 	printf("\n################################\n\n");
 	
-	////////////////////
-	/* Exercise_4 3c */
-	int countedSumPlus = countSumPlus();
+
+	countedSumPlus = countSumPlus();
 	
 	printf("The sum of positive integers divisible by three is: %d\n", countedSumPlus);
 	printf("\n################################\n\n");
 	
-	/////////////////////////////////////////////////////////////////
-	/* Exercise_4 4a */
 	
 	randomNumber = randomNumberGenerator(0, 120); // note: CHANGE MANUALLY!
 	
 	printf("Generated 'randomNumber' is: %d\n", randomNumber);
 	printf("\n################################\n\n");
 	
-	/////////////////////////////////////////////////////////////////
-	/* Exercise_4 4b */
-	
-	int grade = gradeCalc(randomNumber);
+	grade = gradeCalc(randomNumber);
 	
 	if (grade < 0) {
 		
@@ -76,14 +81,30 @@ int main() {
 		printf("Corresponding grade (0 – 5) for %d (0 – 120) is: %d\n", randomNumber, grade);
 		printf("\n################################\n\n");
 	}
-    
+	
+	
+	input = primeQuery();
+	printf("You entered: %d\n\n", input);
+	
+	switch (isPrime(input)) {
+		
+	case 0:
+		printf("The number you entered is PRIME!\n");
+		break;
+	case 1:
+		printf("The number you entered is NOT PRIME!\n");
+		break;
+	}
+	
     
     return 0;
 }
 
-/*
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
+*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Task 3:
+//////////
 
 int countNegatives() {
 
@@ -110,8 +131,6 @@ int countNegatives() {
 	
 	return negatives;
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int countSum() {
 	
@@ -144,8 +163,6 @@ int countSum() {
 	return sum;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 int countSumPlus() {
 	
 	int local = 1;
@@ -171,6 +188,7 @@ int countSumPlus() {
 	return sum;
 }
 
+// Task 4:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int randomNumberGenerator(int first, int second) {
@@ -195,8 +213,6 @@ int randomNumberGenerator(int first, int second) {
 	return randomNumber;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 int gradeCalc(int points) {
 
 	int grade = 0;
@@ -220,6 +236,68 @@ int gradeCalc(int points) {
 	return grade;
 }
 
-/*
+// Task 5:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
+
+int primeQuery() {
+
+	int input = 0;
+	char temp = 0; // "Garbage-collector"
+	int status = 0; // Is input == "number"
+	
+	printf("Enter a number, please: ");
+	status = scanf("%d", &input); // Make a "copy" of user input into "status".
+	temp = scanf("%c", &temp); // Essentially bypassing scanf()'s built-in linebreak.
+	
+	while (status != 1) {
+
+		printf("Invalid input... please enter a NUMBER: ");
+		status = scanf("%d", &input);
+		temp = scanf("%c", &temp);
+	}
+	
+	return input;
+}
+
+int isPrime(int input) {
+	
+	int i = 2;
+	int flag = 0;
+	
+	// for-loop goes through every number below half of input and changes flag if divisible at any time.
+	for (i = 2; i <= input/2; ++i) {
+		
+		if (input % i == 0) {
+			
+			flag = 1;
+		}
+	}
+	
+	if (input == 0 || input == 1) {
+		
+		printf("%d is neither prime nor composite!\n", input);
+		
+	} else if (input < 0){
+		
+		printf("%d is not prime because negative numbers aren't prime!\n", input);
+		
+	} else {
+	
+		if (flag == 0) {
+		
+			return flag; // PRIME
+		}
+		
+		else {
+		
+			return flag; // NOT PRIME
+		}
+	}
+	
+	
+	return 22; // The function should never reach here...
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
