@@ -230,7 +230,7 @@ int multiplication(int number) {
 	
 			number = number * number;
 			
-			if (number < (int_min) || number == 0) { // Checks for int overflow BEFORE value_max!
+			if (number < (int_min) || number == 0) {
 				local_iterator = 0;
 			
 			} else {
@@ -247,7 +247,7 @@ int multiplication(int number) {
 			number = number * number;
 	
 			/* Using a couple of OR:s to rule out unpredictable behaviour from overflow. */
-			if (number > (int_max) || number < 0 || number == 0) { // Checks for int overflow BEFORE value_max!
+			if (number > (int_max) || number < 0 || number == 0) {
 				local_iterator = 0;
 			
 			} else {
@@ -260,52 +260,6 @@ int multiplication(int number) {
 	
 	return result;
 }
-
-/*
-int collatz(int number) {
-	
-	int result = 0;
-	int local_iterator = 1;
-	
-	while (local_iterator) {
-	
-		if (result == 0) {
-		
-			if (number % 2 == 0) {
-	
-				result = number / 2;
-				
-		
-			} else {
-			
-				result = number * 3 + 1;
-				
-			}
-			
-		} else if (result > 1) {
-			
-			if (result % 2 == 0) {
-	
-				result /= 2;
-				
-				
-		
-			} else {
-			
-				result *= 3 + 1;
-				
-				
-			}
-			
-		} else {
-			
-			local_iterator = 0;
-		}
-	}
-	
-	return 0;
-}
-*/
 
 int isPerfectSquare(int x) {
 

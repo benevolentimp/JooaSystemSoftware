@@ -33,8 +33,7 @@ int main() {
 	int input = 0;
 	
 	
-	countedNegatives = countNegatives();
-	
+	countedNegatives = countNegatives(); // E4 – 3a:
 	if (countedNegatives == 1) {
 	
 		printf("You gave %d negative number.\n", countedNegatives);
@@ -50,28 +49,22 @@ int main() {
 		printf("You gave %d negative numbers.\n", countedNegatives);
 		printf("\n################################\n\n");
 	}
-	
 
-	countedSum = countSum();
-	
+	countedSum = countSum(); // E4 – 3b:
 	printf("The sum of your integers is: %d\n", countedSum);
 	printf("\n################################\n\n");
-	
 
-	countedSumPlus = countSumPlus();
-	
+	countedSumPlus = countSumPlus(); // E4 – 3c:
 	printf("The sum of positive integers divisible by three is: %d\n", countedSumPlus);
 	printf("\n################################\n\n");
 	
 	
-	randomNumber = randomNumberGenerator(0, 120); // note: CHANGE MANUALLY!
-	
+	randomNumber = randomNumberGenerator(0, 120); // // E4 – 4a:
 	printf("Generated 'randomNumber' is: %d\n", randomNumber);
 	printf("\n################################\n\n");
 	
-	grade = gradeCalc(randomNumber);
-	
-	if (grade < 0) {
+	grade = gradeCalc(randomNumber); // E4 – 4b:
+	if ((grade < 0) || (grade > 5)) {
 		
 		printf("Oops, something went wrong...\nInput out of range!\n");
 		printf("\n################################\n\n");
@@ -83,7 +76,7 @@ int main() {
 	}
 	
 	
-	input = primeQuery();
+	input = primeQuery(); // E4 – 5(a)b:
 	printf("You entered: %d\n\n", input);
 	
 	switch (isPrime(input)) {
@@ -217,7 +210,7 @@ int gradeCalc(int points) {
 
 	int grade = 0;
 	
-	if (points < 60) {
+	if ((points < 60) && (points >= 0)) {
 		grade = 0;
 	} else if ((points >= 60) && (points < 72)) {
 		grade = 1;
@@ -227,10 +220,8 @@ int gradeCalc(int points) {
 		grade = 3;
 	} else if ((points >= 96) && (points < 108)) {
 		grade = 4;
-	} else if (points >= 108) {
+	} else if ((points >= 108) && (points <= 120)) {
 		grade = 5;
-	} else {
-		grade = points;
 	}
 	
 	return grade;
@@ -241,6 +232,7 @@ int gradeCalc(int points) {
 
 int primeQuery() {
 
+	int int_max = 2147483647;
 	int input = 0;
 	char temp = 0; // "Garbage-collector"
 	int status = 0; // Is input == "number"
@@ -249,7 +241,7 @@ int primeQuery() {
 	status = scanf("%d", &input); // Make a "copy" of user input into "status".
 	temp = scanf("%c", &temp); // Essentially bypassing scanf()'s built-in linebreak.
 	
-	while (status != 1) {
+	while (status != 1)  {
 
 		printf("Invalid input... please enter a NUMBER: ");
 		status = scanf("%d", &input);
