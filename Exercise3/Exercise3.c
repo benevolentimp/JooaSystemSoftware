@@ -34,15 +34,14 @@ int main() {
 	
 
 	printf("A couple of arithmetic progressions:\n#####################################\n");
-    printf("The sum of arithmetic progression of one from 1 to 100 (or 10) is %d.\n", apLoop());
-    printf("The sum of arithmetic progression of even numbers from 1 to 1000 (or 10) is %d.\n\n", apLoopEven());
+    printf("The sum of arithmetic progression of one from 1 to 100 is %d.\n", apLoop());
+    printf("The sum of arithmetic progression of even numbers from 1 to 1000 is %d.\n\n", apLoopEven());
     
     randomNumber = randomGenerator();
     printf("Initial random integer: %d\n##########################\n", randomNumber);
     
-    //printf("LONG_MAX : %ld\n", (long) LONG_MAX);
-    printf("After multiplying %d (initial) with itself and so on...", randomNumber);
-    printf("we got: %d (before overflow)\n\n", multiplication(randomNumber));
+    printf("After multiplying %d (initial) with itself and so on...\n", randomNumber);
+    printf("We got: %d (before overflow)\n\n", multiplication(randomNumber));
     
     
     /*
@@ -118,6 +117,7 @@ int main() {
     	printf("The randomly generated number %d IS NOT a Fibonacci-number.\n", nro);
     	nro = overHundoTouso();
     }
+    
     
     return 0;
 }
@@ -248,6 +248,7 @@ int multiplication(int number) {
 	
 			/* Using a couple of OR:s to rule out unpredictable behaviour from overflow. */
 			if (number > (int_max) || number < 0 || number == 0) {
+			
 				local_iterator = 0;
 			
 			} else {
@@ -264,6 +265,7 @@ int multiplication(int number) {
 int isPerfectSquare(int x) {
 
 	int s = (int) sqrt(x);
+	
 	return (s*s == x);
 }
 

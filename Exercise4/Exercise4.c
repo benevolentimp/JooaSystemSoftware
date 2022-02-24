@@ -84,6 +84,7 @@ int main() {
 	case 0:
 		printf("The number you entered is PRIME!\n");
 		break;
+		
 	case 1:
 		printf("The number you entered is NOT PRIME!\n");
 		break;
@@ -118,7 +119,6 @@ int countNegatives() {
 		} else if (inputs < 0) {
 		
 			negatives++;
-			
 		}
 	}
 	
@@ -232,7 +232,7 @@ int gradeCalc(int points) {
 
 int primeQuery() {
 
-	int int_max = 2147483647;
+	//int int_max = 2147483647;
 	int input = 0;
 	char temp = 0; // "Garbage-collector"
 	int status = 0; // Is input == "number"
