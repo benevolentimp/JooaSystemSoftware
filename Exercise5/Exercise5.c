@@ -8,9 +8,14 @@ Description:	Small exercises about main()-function and Arrays...
 
 #include <stdlib.h>
 #include <time.h>
-//#include <ctype.h>
+#include <ctype.h>
+#include <math.h>
+
+#define MAX 10000000
 
 int isNumber(char number[]);
+int armstrongChecker(char clA[]);
+
 void printArray(int array[], int size); // Doesn't return anything, just prints or modifies an array.
 int generateArray(int array[], int size);
 void arrangeArray(int array[], int size);
@@ -19,39 +24,75 @@ void swap(int *xp, int *yp);
 
 int main(int argc, char *argv[]) {
 	
+	// int i = 0;
+	
+	int clIntegerCheck = 0;
+	int clInteger = 0;
+	
 	int actualArray[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	int actualArray2[8] = {2, 3, 6, 9, 4, 2, 0, 7};
-	//int actualArray3[8] = {'@', '#', 6, 9, 4, 2, 0, 'f'}; // Test array for non-numeric elements.
+	int actualArray2[8] = {-1, 1, 0, -9, 4.20, 2, 0, 7};
+	int actualArray3[8] = {'@', '#', 6, 9, 4, 2, 0, 'f'}; // Test array for non-numeric elements.
+	
 	int emptyArray[10];
 	
+	// -¤- 3ab -¤-
+	
 	if (argc == 1) {
-		printf("Executed program : %s\nWith no additional arguments...\n", argv[0]);
+	
+		printf("Too few arguments!\n");
+		return 0;
+	
 	}
 	
+	clIntegerCheck = isNumber(argv[1]);
+	
+	if (clIntegerCheck == 1 && argc == 2) {
+		
+		printf("Executed program : %s\nWith 1 additional argument...\n", argv[0]);
+		printf("%s is a number\n", argv[1]);
+		clInteger = atoi(argv[1]);
+		
+		if (clInteger > MAX) {
+			
+			printf("Command-line argument too big,\nShould be between 0 - 10 000 000.\n");
+			
+		} else {
+			
+			// armstrongChecker(argv[1]);
+			printf("armstrongChecker(argv[1])\n");
+		}
+		
+	} else if (clIntegerCheck == 0 && argc == 2) {
+		
+		printf("Executed program : %s\nWith 1 additional argument...\n", argv[0]);
+		printf("%s : Invalid input...\n", argv[1]);
+		
+	} else {
+		
+		printf("Too many arguments!\n");
+		return 0;
+	}
+	
+	// -¤- 4a -¤-
 	printf("\nFunction running...\t[printArray(actualArray)]\n"); 
 	printArray(actualArray, 10);
-	
 	printf("\nFunction running...\t[printArray(actualArray2)]\n"); 
 	printArray(actualArray2, 8);
+	printf("\nFunction running...\t[printArray(actualArray3)]\n"); 
+	printArray(actualArray3, 8);
 	
+	// -¤- 4b -¤-
 	printf("\nFunction(s) running...\t[generateArray(emptyArray), printArray(emptyArray)]\n"); 
 	generateArray(emptyArray, 10);
 	printArray(emptyArray, 10);
 	
+	// -¤- 4c -¤-
 	printf("\nFunction(s) running...\t[arrangeArray(emptyArray), printArray(emptyArray)]\n"); 
 	arrangeArray(emptyArray, 10);
 	printArray(emptyArray, 10);
 	
-	/*
-	if (isNumber(argv[1]) == 1) {
-		
-		printf("%s is a number\n", argv[1]);
-		
-	} else if (isNumber(argv[1]) == 0) {
-		
-		printf("%s is not a number\n", argv[1]);
-	}
-	*/
+	printf("\n\n");
+
 	
     return 0;	
 }
@@ -101,39 +142,65 @@ void arrangeArray(int array[], int size) {
 			}
 		}
 		
+		// Each round of outer loop, 
+		// swap the found minimum element with the first element.
 		swap(&array[min_idx], &array[i]);
 	}
 }
 
 void swap(int *xp, int *yp) {
-	
+
 	int temp = *xp;
 	
 	*xp = *yp;
 	*yp = temp;
 }
 
-/*
 int isNumber(char number[]) {
-
+	
+	int boolean = 0;
+	
 	int i = 0;
 	
 	// Check for negatives => "the minus sign":
 	if (number[0] == '-') {
 		
-		i = 1;
+		printf("Give POSITIVE (+) integer, please!\n");
+		
+		return boolean;
 	}
 	
-	for (i = i; number[i] != 0; i++) {
-		
+	for (i = 0; number[i] != 0; i++) {
+	
 		// if (number[i] > '9' || number[i] < '0')
 		if (isdigit(number[i])) {
 			
-			return 1;
+			boolean = 1;
+			
+		} else if (!isdigit(number[i])) {
+			
+			boolean = 0;
+			printf("Invalid argument,\nNaN-error!\n\n");
+			break;
 		}
 	}
 	
-	return 0;
+	return boolean;
+}
+
+/*
+int armstrongChecker(char clA) {
+	
+	int i = 0;
+	int j = 0;
+	int boolean = 0;
+	
+	for (i = 0; i >= ; i++) {
+		
+		for (j = 1;;j++) {}
+	}
+	
+	return boolean;
 }
 */
 
