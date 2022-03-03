@@ -14,7 +14,7 @@ Description:	Small exercises about main()-function and Arrays...
 #define MAX 10000000
 
 int isNumber(char number[]);
-int armstrongChecker(char clA[]);
+void armstrong(int clA);
 
 void printArray(int array[], int size); // Doesn't return anything, just prints or modifies an array.
 int generateArray(int array[], int size);
@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
 			
 		} else {
 			
-			// armstrongChecker(argv[1]);
-			printf("armstrongChecker(argv[1])\n");
+			armstrong(clInteger);
+			// printf("armstrongChecker(clInteger)\n");
 		}
 		
 	} else if (clIntegerCheck == 0 && argc == 2) {
@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	
+	/*
 	// -¤- 4a -¤-
 	printf("\nFunction running...\t[printArray(actualArray)]\n"); 
 	printArray(actualArray, 10);
@@ -92,7 +93,7 @@ int main(int argc, char *argv[]) {
 	printArray(emptyArray, 10);
 	
 	printf("\n\n");
-
+	*/
 	
     return 0;	
 }
@@ -165,7 +166,7 @@ int isNumber(char number[]) {
 	// Check for negatives => "the minus sign":
 	if (number[0] == '-') {
 		
-		printf("Give POSITIVE (+) integer, please!\n");
+		// printf("Give POSITIVE (+) integer, please!\n");
 		
 		return boolean;
 	}
@@ -180,7 +181,7 @@ int isNumber(char number[]) {
 		} else if (!isdigit(number[i])) {
 			
 			boolean = 0;
-			printf("Invalid argument,\nNaN-error!\n\n");
+			// printf("Invalid argument,\nNaN-error!\n\n");
 			break;
 		}
 	}
@@ -188,21 +189,41 @@ int isNumber(char number[]) {
 	return boolean;
 }
 
-/*
-int armstrongChecker(char clA) {
-	
-	int i = 0;
-	int j = 0;
-	int boolean = 0;
-	
-	for (i = 0; i >= ; i++) {
+void armstrong(int clA) {
 		
-		for (j = 1;;j++) {}
+	int og = 0;
+	int remainder = 0;
+	int sum = 0;
+	int digits = 0;
+	
+	og = clA;
+	
+	// Number of digits in input:
+	while (clA != 0) {
+		
+		digits++;
+		clA /= 10;
 	}
 	
-	return boolean;
+	clA = og; // Restores original value.
+	
+	// Find sum:
+	while (clA != 0) {
+		
+		remainder = clA % 10;
+		sum += pow(remainder, digits);
+		clA /= 10;
+	}
+	
+	if (sum == og) {
+		
+		printf("Your number '%d' is an Armstrong-number!\n", og);
+		
+	} else {
+		
+		printf("Your command-line argument is not Armstrong/Narcissistic!\n");
+	}
 }
-*/
 
 /*
 End of File
