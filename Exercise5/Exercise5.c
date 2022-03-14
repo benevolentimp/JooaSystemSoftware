@@ -73,7 +73,6 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	
-	/*
 	// -¤- 4a -¤-
 	printf("\nFunction running...\t[printArray(actualArray)]\n"); 
 	printArray(actualArray, 10);
@@ -93,7 +92,6 @@ int main(int argc, char *argv[]) {
 	printArray(emptyArray, 10);
 	
 	printf("\n\n");
-	*/
 	
     return 0;	
 }

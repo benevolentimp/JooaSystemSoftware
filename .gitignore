@@ -8,6 +8,7 @@
 *.txt
 *.doc
 *.docx
+*.odt
 *.pdf
 
 # other obviously ignorable file-types:
