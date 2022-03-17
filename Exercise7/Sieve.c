@@ -1,7 +1,7 @@
 /* 
  * File:   		Sieve.c
- * Author:		
- * Description: 
+ * Author:		Jooa Jaakkola
+ * Description: Count all prime-numbers until given number (using Sieve of Erasthothenes)
  */
 
 #include <stdio.h>
@@ -31,12 +31,13 @@ int sieve(int *ptr, int size) {
 	int x = 1;
 	int A[size];
 	
+	/*
 	// Let A be an array of boolean values set to true (1), indexed 2 to n.
 	for (j = 0; j < size; j++) {
 		A[j] = 1;
 		printf("%d\t", A[j]);
 	} printf("\n\n");
-	
+	*/
 	/*
 	// for i = 2, 3, 4, ..., not exceeding sqrt(n).
 	for (i = 2; i < sqrt(size); i++) {

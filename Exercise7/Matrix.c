@@ -1,7 +1,7 @@
 /* 
  * File:   		Matrix.c
- * Author: 		
- * Description: 
+ * Author: 		Jooa Jaakkola
+ * Description: Iterate array and count 5 adjacent numbers - choose biggest
  */
 
 #include <stdio.h>
@@ -9,20 +9,21 @@
 
 #define SIZE 20
 
-void testMatrix() {
+void matrix() {
 	
-	int arraySum = 0;
+	int arraySum1D = 0;
+	int arraySum2D = 0;
 	
 	int sum = 0;
 	int partSumOdds = 0;
 	int partSumEvens = 0;
 	
 	int i = 0;
-	int j = 0;
-	int condition = 1;
+	int rows = 0;
+	int columns = 0;
 
 	const int twoDimensional[SIZE][SIZE] = {
-	{ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8},
+	{ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8}, // 16 sets of 5 per row
 	{49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48,  4, 56, 62, 00},
 	{81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30,  3, 49, 13, 36, 65},
 	{52, 70, 95, 23,  4, 60, 11, 42, 69, 24, 68, 56,  1, 32, 56, 71, 37,  2, 36, 91},
@@ -43,22 +44,29 @@ void testMatrix() {
 	{20, 73, 35, 29, 78, 31, 90, 81, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54},
 	{ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48}
 	};
-	 
-	const int tester[SIZE] = {
-	8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8
+	
+	const int oneDimensional[SIZE] = {
+	52, 70, 95, 23,  4, 60, 11, 42, 69, 24, 68, 56,  1, 32, 56, 71, 37,  2, 36, 91
 	};
 	
-	// First save sum of every element in array :
+	// Sum of every element in 1D-array :
 	for (i = 0; i < SIZE; i++) {
-		arraySum  += tester[i];
+		arraySum1D  += oneDimensional[i];
+	}
+	// Sum of every element in 2D-array :
+	for (rows = 0; rows < SIZE; rows++) {
+		for (columns = 0; columns < SIZE; columns++) {
+			arraySum2D += twoDimensional[rows][columns];
+		}
 	}
 	
+	// Iterate over 1D-array for every set of 5 adjacent numbers :
 	for (i = 4; i < SIZE; i++) {
 		if (i % 2 == 0) {
-			partSumEvens += twoDimensional[i] + twoDimensional[i-1] + twoDimensional[i-2] + twoDimensional[i-3] + twoDimensional[i-4];
+			partSumEvens += oneDimensional[i] + oneDimensional[i-1] + oneDimensional[i-2] + oneDimensional[i-3] + oneDimensional[i-4];
 			printf("%d\n", partSumEvens);
 		} else {
-			partSumOdds += twoDimensional[i] + twoDimensional[i-1] + twoDimensional[i-2] + twoDimensional[i-3] + twoDimensional[i-4];
+			partSumOdds += oneDimensional[i] + oneDimensional[i-1] + oneDimensional[i-2] + oneDimensional[i-3] + oneDimensional[i-4];
 			printf("%d\n", partSumOdds);
 			
 			if (partSumOdds > partSumEvens && partSumOdds > sum) {
@@ -66,25 +74,60 @@ void testMatrix() {
 				partSumOdds = 0;
 				partSumEvens = 0;
 			} else if (partSumOdds > partSumEvens) {
-				sum = partSumOdds;
 				partSumOdds = 0;
 				partSumEvens = 0;
 				
-			} else if (partSumEvens > partSumEvens && partSumEvens > sum) {
-				sum = partSumOdds;
-				partSumOdds = 0;
-				partSumEvens = 0;
-			} else if (partSumEvens > partSumOdds) {
+			} else if (partSumEvens > partSumOdds && partSumEvens > sum) {
 				sum = partSumEvens;
 				partSumOdds = 0;
 				partSumEvens = 0;
+			} else if (partSumEvens > partSumOdds) {
+				partSumOdds = 0;
+				partSumEvens = 0;
 			}
-		}
+		} // END_OUTERIF (else)
 	}
 	
-	printf("\n%d\n", sum);
+	printf("\nLargest sum of 5 adjacent numbers : %d\n\n", sum);
+	sum = 0;
 	
-	printf("Hello from Matrix, %d\n", arraySum);
+	// Iterate over 2D-array (in nested for-loops) for every set of 5 adjacent numbers :
+	for (rows = 0; rows < SIZE; rows++) {
+		for (columns = 4; columns < SIZE; columns++) {
+			if (columns % 2 == 0) {
+				partSumEvens += twoDimensional[rows][columns] + twoDimensional[rows][columns-1] + twoDimensional[rows][columns-2] + twoDimensional[rows][columns-3] + twoDimensional[rows][columns-4];
+				printf("%d\n", partSumEvens);
+			} else {
+				partSumOdds += twoDimensional[rows][columns] + twoDimensional[rows][columns-1] + twoDimensional[rows][columns-2] + twoDimensional[rows][columns-3] + twoDimensional[rows][columns-4];
+				printf("%d\n", partSumOdds);
+			
+				if (partSumOdds > partSumEvens && partSumOdds > sum) {
+					sum = partSumOdds;
+					partSumOdds = 0;
+					partSumEvens = 0;
+					printf("%d\n", sum);
+				} else if (partSumOdds > partSumEvens) {
+					partSumOdds = 0;
+					partSumEvens = 0;
+					printf("%d\n", sum);
+				
+				} else if (partSumEvens > partSumOdds && partSumEvens > sum) {
+					sum = partSumOdds;
+					partSumOdds = 0;
+					partSumEvens = 0;
+					printf("%d\n", sum);
+				} else if (partSumEvens > partSumOdds) {
+					partSumOdds = 0;
+					partSumEvens = 0;
+					printf("%d\n", sum);
+				}
+			} // END_OUTERIF (else)
+		}
+	} // END_OUTERFOR
+	
+	printf("\nLargest sum of 5 adjacent numbers (Matrix) : %d\n", sum);
+	
+	printf("Hello from 1D, %d\nHello from Matrix, %d\n", arraySum1D, arraySum2D);
 
 }
 
