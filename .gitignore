@@ -21,12 +21,21 @@
 /Practise/*
 
 # ignore executables (essentially all stuff compiler created):
-/Exercise1/HelloWorld
+/Exercise1/HelloWorld.exe
+/Exercise2/HelloWorld
+/Exercise2/Exercise2.exe
 /Exercise2/Exercise2
-/Exercise3/Exercise3
-/Exercise4/Exercise4
-/Exercise5/Exercise5
-/Exercise6/Exercise6
-/Exercise7/Exercise7
-/Exercise8/Exercise8
+/Exercise3/Exercise3.exe
+/Exercise2/Exercise3
+/Exercise4/Exercise4.exe
+/Exercise2/Exercise4
+/Exercise5/Exercise5.exe
+/Exercise2/Exercise5
+/Exercise6/Exercise6.exe
+/Exercise2/Exercise6
+/Exercise7/Exercise7.exe
+/Exercise2/Exercise7
+/Exercise8/Exercise8.exe
+/Exercise2/Exercise8
+/ExerciseWork/program.exe
 
