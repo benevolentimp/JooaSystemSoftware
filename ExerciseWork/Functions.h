@@ -10,5 +10,5 @@
  */
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-void function(int n);
+int inputNumber();
 #endif

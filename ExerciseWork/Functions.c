@@ -11,7 +11,23 @@
 #include <stdio.h>
 #include "Functions.h"
 
-void function(int n)
+
+int inputNumber() 
 {
-    printf("Hello, W%drld!\n", n);
+	int inputted = 0;
+	char temp = 0;
+	int status = 0;
+
+	printf("\n : ");
+	status = scanf("%d", &inputted);
+	temp = scanf("%c", &temp);
+
+	while (status != 1) {
+	
+		printf("Please give a number...\n : ");
+		status = scanf("%d", &inputted);
+		temp = scanf("%c", &temp);
+	}
+	
+	return inputted;
 }
