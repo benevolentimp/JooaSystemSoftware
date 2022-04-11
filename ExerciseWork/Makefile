@@ -1,21 +1,21 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
-default: program
+default: program.exe
 
-# (3.) Making the main-program (executable)
-program: main.o Functions.o
-	$(CC) $(CFLAGS) -o program main.o Functions.o -lm
+# Making the main-program (executable)
+program.exe: main.o wndProcedure.o
+	$(CC) $(CFLAGS) -o program main.o wndProcedure.o
 
-# (2.) Making main.o from main.c
-main.o: main.c Functions.h
+# Making main.o from main.c
+main.o: main.c wndProcedure.h
 	$(CC) $(CFLAGS) -c main.c
 
-# (1.) Making Functions.o from Functions.c
-Functions.o: Functions.c Functions.h
-	$(CC) $(CFLAGS) -c Functions.c
+# Making wndProcedure-object from wndProcedure.c
+wndProcedure.o: wndProcedure.c wndProcedure.h
+	$(CC) $(CFLAGS) -c wndProcedure.c
 
-# ~~ #
+# ~¤~ #
 
 clean:
-	$(DEL) program *.o *~
+	$(DEL) program.exe *.o *~
