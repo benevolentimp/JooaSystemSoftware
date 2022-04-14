@@ -1,2 +1,0 @@
-- This project cannot be run from VSCode-buttons properly.
-    * Run from Terminal below with 'make' and './program.exe'
